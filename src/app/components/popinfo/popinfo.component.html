@@ -1,6 +1,6 @@
 
 <ion-list>
-  <ion-item *ngFor="let lista of listas" detail>
+  <ion-item *ngFor="let lista of listas" detail (click)="onClick()">
     <ion-label> {{ lista }} </ion-label>
   </ion-item>
 </ion-list>

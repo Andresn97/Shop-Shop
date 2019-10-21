@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopinfoComponent } from 'src/app/components/popinfo/popinfo.component';
+import { ProductosService } from 'src/app/services/productos.service';
+import { Producto } from 'src/app/interfaces/producto';
 
 @Component({
   selector: 'app-productos',
@@ -9,9 +11,22 @@ import { PopinfoComponent } from 'src/app/components/popinfo/popinfo.component';
 })
 export class ProductosPage implements OnInit {
 
-  constructor( private popoverCtrl:PopoverController ) { }
+  productos:Producto[];
+  carro = [];
+
+  constructor( private popoverCtrl:PopoverController,
+                private productoService:ProductosService ) { }
 
   ngOnInit() {
+
+    this.productoService.getAllProductos().subscribe(
+      data => {
+        this.productos = data;
+        console.log(data);
+        
+      }
+    );
+
   }
 
   async abrirFiltro( evento ){
@@ -23,6 +38,10 @@ export class ProductosPage implements OnInit {
     });
 
     await popover.present();
+  }
+
+  agregarACarro( producto:Producto ){
+    this.carro.push(producto);
   }
 
 }

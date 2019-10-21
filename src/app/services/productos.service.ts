@@ -12,7 +12,7 @@ export class ProductosService {
   constructor( private http:HttpClient ) { }
 
   getAllProductos(){
-    return this.http.get(this.rutaProducto + "/home/all");
+    return this.http.get<Producto[]>(this.rutaProducto + "/home/all");
   }
 
   filtrarByCategoria( idCategoria:number ){
@@ -29,6 +29,10 @@ export class ProductosService {
 
   buscarProducto( aguja:string ){
     return this.http.get(this.rutaProducto + `/buscar/`);
+  }
+
+  buscarVendedor( idVendedor:number ){
+    return this.http.get(this.rutaProducto + `/vendedor/${idVendedor}`);
   }
 
 }
