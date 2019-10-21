@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { error } from 'util';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-inicio',
@@ -17,7 +18,8 @@ export class InicioPage implements OnInit {
 
   constructor( private usuarioService:UsuarioService, 
                 private alertCtrl:AlertController,
-                private router:Router){
+                private router:Router,
+                private locaService:LocalService){
                   
                 }
 
@@ -32,10 +34,15 @@ export class InicioPage implements OnInit {
 
   iniciarSesion(){
 
-    if( this.usuario.username == "andres97n" ){
-      this.router.navigate(['/carrito']);
-      this.logeo = true;
-    } else{
+    let idPersona:number;
+
+    // if( this.usuario.username == "andres97n" ){
+      // this.router.navigate(['/productos']);
+      // this.logeo = true;
+      // idPersona = 18;
+      // localStorage.setItem("idCiente",idPersona.toString());
+      // this.locaService.setIdCliente(idPersona);
+    // } else{
       
       let sesion:string;
       this.usuarioService.logearUsuario( this.usuario ).subscribe(
@@ -43,6 +50,9 @@ export class InicioPage implements OnInit {
           // sesion = data;
           sesion = "valido";
           this.logeo = true;
+          idPersona = 18;
+          this.locaService.setIdCliente(idPersona);
+          // this.locaService.setIdCliente(data.id_persona);
         },
         error => {
           sesion = "error";
@@ -50,9 +60,10 @@ export class InicioPage implements OnInit {
           
         }
       );
-      
         this.presentAlert( sesion );
-    }
+        this.locaService.setIdCliente(idPersona);
+        
+    
 
   }
 
@@ -81,7 +92,7 @@ export class InicioPage implements OnInit {
             text: 'Entendido',
             handler: () => {
               console.log('Se seleccionó Ok');
-              this.router.navigate(['/carrito']);
+              this.router.navigate(['/productos']);
             }
           }
         ]

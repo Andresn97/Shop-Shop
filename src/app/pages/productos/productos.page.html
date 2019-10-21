@@ -1,19 +1,24 @@
-
-
-<app-header titulo="Lista de Productos" ></app-header>
+<app-header titulo="Lista de Productos"></app-header>
 
 <ion-content>
 
-    <!-- <ion-buttons slot="start"> -->
-        <ion-button (click)="abrirFiltro( $event )">
-            <ion-icon slot="start" name="add"></ion-icon>
-            Filtrar..
-        </ion-button>
-    <!-- </ion-buttons> -->
+    <!-- <ion-button (click)="abrirFiltro( $event )">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Filtrar..
+    </ion-button>
+
+        <ion-item>
+            <ion-label>Filtrar por...</ion-label>
+            <ion-select multiple="true" placeholder="Filtrar productos">
+                <ion-select-option [(value)]="peperoni">Categoria</ion-select-option>
+                <ion-select-option [(value)]="hawaii">Marca</ion-select-option>
+                <ion-select-option [(value)]="hawaii">Linea</ion-select-option>
+            </ion-select>
+        </ion-item> -->
 
     <ion-card *ngFor="let producto of productos">
         <ion-card-header>
-            <img src="producto.ima_url">
+            <img [src]="producto.ima_url">
             <ion-card-subtitle>Calificacion: {{ producto.prod_precio_venta }}</ion-card-subtitle>
             <ion-card-title>{{ producto.prod_nombre }}</ion-card-title>
         </ion-card-header>
@@ -21,8 +26,17 @@
             <ion-item>
                 <ion-label>Precio: ${{ producto.prod_precio_venta }}</ion-label>
             </ion-item>
-            <ion-button (click)="agregarACarro( producto )" >Añadir a mi Carrito</ion-button>
+            <ion-button (click)="agregarACarro( producto )">Añadir a mi Carrito</ion-button>
         </ion-card-content>
     </ion-card>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/carrito">
+            <ion-icon name="cart"></ion-icon>
+            <ion-button id="notification" *ngIf="num != 0" color="header" routerLink="/carrito">
+                    {{ num }}
+                </ion-button>
+        </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

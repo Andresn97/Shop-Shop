@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'inicio', loadChildren: './pages/inicio/inicio.module#InicioPageModule' },
   { path: 'productos', loadChildren: './pages/productos/productos.module#ProductosPageModule' },
   { path: 'carrito', loadChildren: './pages/carrito/carrito.module#CarritoPageModule' },
+  { path: 'carrito/:tipo', loadChildren: './pages/carrito/carrito.module#CarritoPageModule' },
   { path: 'buscar-producto', loadChildren: './pages/buscar-producto/buscar-producto.module#BuscarProductoPageModule' },
 ];
 

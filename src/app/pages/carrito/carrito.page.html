@@ -3,14 +3,16 @@
 
 <ion-content>
 
-    <ion-card>
+    <ion-card *ngFor="let producto of productos">
         <ion-card-header>
-            <ion-img src=""></ion-img>
-            <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-            <ion-card-title>Awesome Title</ion-card-title>
+            <ion-img [src]="producto.ima_url"></ion-img> <br>
+            <ion-card-subtitle>Calificacion: {{ producto.prod_precio_venta }}</ion-card-subtitle>
+            <ion-card-title>{{ producto.prod_nombre }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            
+                <ion-item>
+                        <ion-label>Precio: ${{ producto.prod_precio_venta }}</ion-label>
+                    </ion-item>
         </ion-card-content>
     </ion-card>
 
@@ -18,6 +20,13 @@
 
 <ion-footer>
     <ion-toolbar color="header">
-        <ion-title>Precio Total a Pagar:</ion-title>
+        <!-- <ion-item slot="start"> -->
+            <ion-label slot="start">Precio Total a Pagar: ${{ total }}</ion-label>
+        <!-- </ion-item> -->
+        <!-- <ion-title>Precio Total a Pagar:</ion-title> -->
+            <ion-button (click)="enviarPedido()" slot="end" color="light">
+                <ion-icon slot="start" name="cash"></ion-icon>
+                Hacer Pedido
+            </ion-button>
     </ion-toolbar>
 </ion-footer>

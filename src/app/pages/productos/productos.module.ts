@@ -17,9 +17,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  entryComponents: [
-    PopinfoComponent
-  ],
+  // entryComponents: [
+  //   PopinfoComponent
+  // ],
   imports: [
     CommonModule,
     FormsModule,
