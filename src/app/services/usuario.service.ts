@@ -11,7 +11,7 @@ export class UsuarioService {
   constructor( private http:HttpClient){}
 
   logearUsuario( usuario:Usuario ):Observable<any>{
-    return this.http.post("http://192.168.100.126:1313/login", usuario);
+    return this.http.post("http://192.168.137.222:1313/login", usuario);
   }
 
 }

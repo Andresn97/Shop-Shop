@@ -7,7 +7,7 @@ import { Carrito } from '../interfaces/carrito';
 })
 export class VentasService {
 
-  ruta:string = "http://192.168.100.126:8080/api/v1/venta";
+  ruta:string = "http://192.168.137.222:8080/api/v1/venta";
 
   constructor( private http:HttpClient ) { }
 

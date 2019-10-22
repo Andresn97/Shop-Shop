@@ -10,10 +10,10 @@ import { Producto } from '../interfaces/producto';
 })
 export class CategoriaService {
 
-  rutaCategoria:string = "http://192.168.100.126:6060/api/v1/categoria";
-  rutaLinea:string = "http://192.168.100.126:6060/api/v1/linea"
-  rutaMarca:string = "http://192.168.100.126:6060/api/v1/marca"
-  ruta:string = "http://192.168.100.126:6060/api/v1/producto";
+  rutaCategoria:string = "http://192.168.137.222:6060/api/v1/categoria";
+  rutaLinea:string = "http://192.168.137.222:6060/api/v1/linea"
+  rutaMarca:string = "http://192.168.137.222:6060/api/v1/marca"
+  ruta:string = "http://192.168.137.222:6060/api/v1/producto";
 
   constructor( private http:HttpClient ) { }
 
