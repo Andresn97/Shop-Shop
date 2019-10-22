@@ -26,13 +26,6 @@ export class ProductosPage implements OnInit {
   m:Marca;
   c:Categoria;
 
-  customAlertOptions: any = {
-    header: 'Pizza Toppings',
-    subHeader: 'Select your toppings',
-    message: '$1.00 per topping',
-    translucent: true
-  };
-
   constructor(  private popoverCtrl:PopoverController,
                 private productoService:ProductosService,
                 private localService:LocalService,

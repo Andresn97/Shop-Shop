@@ -23,7 +23,7 @@
         </ion-select>
     </ion-item>
 
-    <ion-card *ngFor="let producto of productos | filtro: aguja">
+    <ion-card *ngFor="let producto of productos">
         <ion-card-header>
             <img [src]="producto.ima_url">
             <ion-card-subtitle>Calificacion: {{ producto.calificacion }}</ion-card-subtitle>
