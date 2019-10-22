@@ -9,7 +9,7 @@ import { Producto } from 'src/app/interfaces/producto';
 })
 export class BuscarProductoPage implements OnInit {
 
-  productos:Producto[];
+  productos:Producto[] = [];
   aguja:string;
 
   constructor( private productoService:ProductosService ) { }
@@ -19,13 +19,18 @@ export class BuscarProductoPage implements OnInit {
     this.productoService.getAllProductos().subscribe(
       data => {
         this.productos = data;
+        console.log(this.productos);
+        
       }
     );
+
   }
 
   buscarProducto( evento ){
     console.log(evento);
-    this.aguja = evento.deatil.value;
+    this.aguja = evento.detail.value;
+    // this.aguja.toLowerCase();
+    // this.regresarProductos(this.aguja);
   }
 
 }

@@ -5,21 +5,28 @@
     <!-- <ion-button (click)="abrirFiltro( $event )">
         <ion-icon slot="start" name="add"></ion-icon>
         Filtrar..
-    </ion-button>
+    </ion-button> -->
 
-        <ion-item>
-            <ion-label>Filtrar por...</ion-label>
-            <ion-select multiple="true" placeholder="Filtrar productos">
-                <ion-select-option [(value)]="peperoni">Categoria</ion-select-option>
-                <ion-select-option [(value)]="hawaii">Marca</ion-select-option>
-                <ion-select-option [(value)]="hawaii">Linea</ion-select-option>
-            </ion-select>
-        </ion-item> -->
+    <ion-item>
+        <!-- <ion-label>Filtrar por...</ion-label> -->
+        <ion-select multiple="false" placeholder="Por Categoría" >
+            <ion-select-option [(value)]="c.id_categoria" *ngFor="let c of categoria" (open)="filtrarCategoria( $event)" >{{ c.cat_nombre }}
+            </ion-select-option>
+            <!-- <ion-select-option [(value)]="hawaii">Marca</ion-select-option>
+                <ion-select-option [(value)]="hawaii">Linea</ion-select-option> -->
+        </ion-select>
+        <ion-select multiple="false" placeholder="Por Línea">
+            <ion-select-option [(value)]="item.id_linea" *ngFor="let item of linea"> {{ item.lin_nombre }} </ion-select-option>
+        </ion-select>
+        <ion-select multiple="false" placeholder="Por Marca">
+            <ion-select-option [(value)]="m.id_marca" *ngFor="let m of marca" >{{ m.marc_nombre }}</ion-select-option>
+        </ion-select>
+    </ion-item>
 
-    <ion-card *ngFor="let producto of productos">
+    <ion-card *ngFor="let producto of productos | filtro: aguja">
         <ion-card-header>
             <img [src]="producto.ima_url">
-            <ion-card-subtitle>Calificacion: {{ producto.prod_precio_venta }}</ion-card-subtitle>
+            <ion-card-subtitle>Calificacion: {{ producto.calificacion }}</ion-card-subtitle>
             <ion-card-title>{{ producto.prod_nombre }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
@@ -34,8 +41,8 @@
         <ion-fab-button routerLink="/carrito">
             <ion-icon name="cart"></ion-icon>
             <ion-button id="notification" *ngIf="num != 0" color="header" routerLink="/carrito">
-                    {{ num }}
-                </ion-button>
+                {{ num }}
+            </ion-button>
         </ion-fab-button>
     </ion-fab>
 

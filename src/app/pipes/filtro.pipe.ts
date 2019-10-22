@@ -1,11 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Producto } from '../interfaces/producto';
 
 @Pipe({
   name: 'filtro'
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(arreglo: any[], texto:string, columna:string): any[] {
+  transform(arreglo: Producto[], texto:string, columna:string): Producto[] {
+
+    // arreglo = [];
 
     if( texto === '' ){
       return arreglo;
@@ -15,8 +18,8 @@ export class FiltroPipe implements PipeTransform {
 
     return arreglo.filter(
       item => {
-        texto = texto.toLowerCase();
-        return item[columna].toLowerCase().includes(texto);
+        // texto = texto.toLowerCase();
+        return item.prod_nombre.toLowerCase().includes(texto);
       }
     );
   }

@@ -34,7 +34,7 @@ export class InicioPage implements OnInit {
 
   iniciarSesion(){
 
-    let idPersona:number;
+    // let idPersona:number;
 
     // if( this.usuario.username == "andres97n" ){
       // this.router.navigate(['/productos']);
@@ -47,12 +47,18 @@ export class InicioPage implements OnInit {
       let sesion:string;
       this.usuarioService.logearUsuario( this.usuario ).subscribe(
         data => {
-          // sesion = data;
-          sesion = "valido";
-          this.logeo = true;
-          idPersona = 18;
-          this.locaService.setIdCliente(idPersona);
-          // this.locaService.setIdCliente(data.id_persona);
+
+          if( data.user_tipo = "C" ){
+            sesion = "valido";
+            this.logeo = true;
+            // idPersona = 18;
+            // this.locaService.setIdCliente(idPersona);
+            this.locaService.setIdCliente(data.id_persona);
+          } else{
+            sesion= "invalido"
+          }
+
+         
         },
         error => {
           sesion = "error";
@@ -61,7 +67,7 @@ export class InicioPage implements OnInit {
         }
       );
         this.presentAlert( sesion );
-        this.locaService.setIdCliente(idPersona);
+        // this.locaService.setIdCliente(idPersona);
         
     
 
@@ -79,6 +85,20 @@ export class InicioPage implements OnInit {
             text: 'Entendido',
             handler: () => {
               console.log('Se seleccionó Ok');
+            }
+          }
+        ]
+      });
+    } else if( info=="invalido" ){
+      alert = await this.alertCtrl.create({
+        header: 'Aviso',
+        message: 'El usuario correcto debe ser un Cliente',
+        buttons: [
+           {
+            text: 'Entendido',
+            handler: () => {
+              console.log('Se seleccionó Ok');
+              this.router.navigate(['/productos']);
             }
           }
         ]

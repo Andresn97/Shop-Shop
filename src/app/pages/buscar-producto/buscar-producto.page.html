@@ -7,7 +7,7 @@
 (ionChange)="buscarProducto($event)" [debounce]="250" animated></ion-searchbar>
 
 
-<ion-card *ngFor="let producto of productos">
+<ion-card *ngFor="let producto of productos | filtro: aguja">
         <ion-card-header>
             <img [src]="producto.ima_url">
             <ion-card-subtitle>Calificacion: {{ producto.prod_precio_venta }}</ion-card-subtitle>
