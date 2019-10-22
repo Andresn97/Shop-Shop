@@ -15,6 +15,7 @@ export class InicioPage implements OnInit {
 
   usuario:Usuario;
   logeo:boolean;
+  sesion:string = "";
 
   constructor( private usuarioService:UsuarioService, 
                 private alertCtrl:AlertController,
@@ -44,29 +45,31 @@ export class InicioPage implements OnInit {
       // this.locaService.setIdCliente(idPersona);
     // } else{
       
-      let sesion:string;
+      
       this.usuarioService.logearUsuario( this.usuario ).subscribe(
         data => {
 
+          console.log(data.user_tipo);
+          
           if( data.user_tipo = "C" ){
-            sesion = "valido";
+            this.sesion = "valido";
             this.logeo = true;
             // idPersona = 18;
             // this.locaService.setIdCliente(idPersona);
             this.locaService.setIdCliente(data.id_persona);
           } else{
-            sesion= "invalido"
+            this.sesion= "invalido"
           }
 
          
         },
         error => {
-          sesion = "error";
+          this.sesion = "error";
           console.log(error);
           
         }
       );
-        this.presentAlert( sesion );
+        this.presentAlert( this.sesion );
         // this.locaService.setIdCliente(idPersona);
         
     
@@ -76,7 +79,7 @@ export class InicioPage implements OnInit {
   async presentAlert( info:string ) {
 
     let alert;
-    if( info=="error" ){
+    if( info.includes("error" )){
       alert = await this.alertCtrl.create({
         header: 'Mensaje',
         message: 'Usuario Incorrecto \n Ingrese un usuario válido',
@@ -112,6 +115,10 @@ export class InicioPage implements OnInit {
             text: 'Entendido',
             handler: () => {
               console.log('Se seleccionó Ok');
+              this.usuario = {
+                username: "",
+                password: ""
+              }
               this.router.navigate(['/productos']);
             }
           }

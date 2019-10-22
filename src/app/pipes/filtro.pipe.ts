@@ -6,7 +6,7 @@ import { Producto } from '../interfaces/producto';
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(arreglo: Producto[], texto:string, columna:string): Producto[] {
+  transform(arreglo: Producto[], texto:string): Producto[] {
 
     // arreglo = [];
 

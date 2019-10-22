@@ -32,7 +32,9 @@ export class CarritoPage implements OnInit {
   
       this.productos.forEach(
         producto => {
+          
           this.total += producto.prod_precio_venta;
+          console.log(this.total);
         }
       );
 
